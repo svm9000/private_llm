@@ -45,7 +45,6 @@ def load_and_retrieve_docs(source):
         splits = text_splitter.split_documents(docs)
         vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
 
-        print("stage1a")
 
     else:
         raise ValueError("Unsupported document source.")
@@ -86,21 +85,20 @@ def rag_chain(source_url, source_pdf, question):
 
     if source_pdf:
         for src in source_pdf:
-            print("stage1")
 
             retriever = load_and_retrieve_docs(src.strip())
             retrieved_docs = retriever.invoke(question)
-            print("stage2")
+
 
             formatted_context = format_docs(retrieved_docs)
             formatted_prompt = f"Question: {question}\n\nContext: {formatted_context}"
-            print("stage3")
+
 
             response = ollama.chat(model=model, messages=[{'role': 'user', 'content': formatted_prompt}])
 
             response_text = f"PDF: {src}:\n\n{response['message']['content']}:\n"
             responses.append(response_text)
-            print("stage4")
+    
 
             print("response pdf: ",responses)
 
