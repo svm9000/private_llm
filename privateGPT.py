@@ -6,7 +6,7 @@ from langchain_community.embeddings import OllamaEmbeddings
 import ollama
 
 
-# Global Variables
+# set global model variables
 model = "mistral"
 # model = "llama2"
 
@@ -24,7 +24,9 @@ def load_and_retrieve_docs(source):
         
         docs = loader.load()
 
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        #text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+
         splits = text_splitter.split_documents(docs)
 
         vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
@@ -110,12 +112,12 @@ iface = gr.Interface(
     fn=rag_chain,
     inputs=[
         gr.Textbox(label="Enter URL(s) separated by comma", type="text"),
-        gr.File(label="Upload PDF File", file_count="multiple"),
+        gr.File(label="Upload PDF File(s)", file_count="multiple"),
         "text"
     ],
     outputs="text",
-    title="RAG Chain Question Answering",
-    description="Enter URL(s) separated by comma or upload a PDF file to get answers from the RAG chain."
+    title="Retrieval-Augmented Generation (RAG) Chain Question Answering",
+    description="Enter URL(s) separated by comma or upload a PDF file(s) to get answers from the RAG chain."
 )
 
 # Launch the Gradio app
