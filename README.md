@@ -49,5 +49,4 @@ http://127.0.0.1:7860
 ```
 
 The app should look like the following screenshot 
-![Gradio-RAG-app](images/gradio_RAG_app_image.png)
-
+![Gradio-RAG-app](images/gradio_RAG_app_image.PNG)
