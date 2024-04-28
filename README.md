@@ -21,7 +21,7 @@ Nvidia GPU
 docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 ```
 
-## install python and required packages inside container
+## Install python and required packages inside container
 ```
 docker exec -it ollama /bin/bash
 apt-get update
