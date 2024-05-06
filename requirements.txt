@@ -1,6 +1,7 @@
 langchain==0.1.11
+pydantic==2.7.1
 gpt4all==1.0.8
-chromadb==0.4.7
+chromadb==0.5.0
 weaviate-client
 llama-cpp-python==0.1.81
 urllib3==2.0.4
@@ -13,5 +14,5 @@ pandoc==2.3
 pypandoc==1.11
 tqdm==4.66.1
 sentence_transformers==2.2.2
-gradio==4.21.0
+gradio==4.28.0
 ollama==0.1.7

@@ -7,8 +7,9 @@ import ollama
 
 
 # set global model variables
-model = "mistral"
+#model = "mistral"
 # model = "llama2"
+model = "llama3"
 
 embeddings = OllamaEmbeddings(model=model)
 retriever_cache = {}
@@ -64,10 +65,12 @@ def format_docs(docs):
 def rag_chain(source_url, source_pdf, question):
     print("source_url = ",source_url)
     print("source_pdf = ",source_pdf)
+    print("retriever_cache = ", retriever_cache)
 
     responses = []
 
     if source_url:
+            
         for src in source_url.split(","):
             retriever = load_and_retrieve_docs(src.strip())
             retrieved_docs = retriever.invoke(question)
@@ -81,6 +84,7 @@ def rag_chain(source_url, source_pdf, question):
             responses.append(response_text)
 
             print("response url: ",responses)
+
 
 
     if source_pdf:

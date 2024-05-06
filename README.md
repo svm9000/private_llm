@@ -39,6 +39,7 @@ ollama pull mistral
 ## Run
 
 ```
+cd Private_LLM
 python3 privateGPT.py
 ```
 
