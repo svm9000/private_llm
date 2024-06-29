@@ -34,11 +34,12 @@ pip install -r requirements.txt
 Pull the model you'd like to use:
 
 ```
-ollama pull mistral
+ollama pull llama3
 ```
 ## Run
 
 ```
+cd Private_LLM
 python3 privateGPT.py
 ```
 
