@@ -9,7 +9,7 @@ import ollama
 # set global model variables
 #model = "mistral"
 # model = "llama2"
-model = "llama3"
+model = "llama3.2"
 
 embeddings = OllamaEmbeddings(model=model)
 retriever_cache = {}
