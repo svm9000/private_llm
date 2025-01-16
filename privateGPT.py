@@ -15,11 +15,6 @@ model = os.getenv('MODEL', 'llama3.2')
 chunk_size = int(os.getenv('CHUNK_SIZE', 500))
 chunk_overlap = int(os.getenv('CHUNK_OVERLAP', 50))
 
-# set global model variables
-#model = "mistral"
-# model = "llama2"
-#model = "llama3.2"
-
 embeddings = OllamaEmbeddings(model=model)
 retriever_cache = {}
 
