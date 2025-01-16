@@ -3,13 +3,22 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader, PyMuPDFLoader
 from langchain_community.vectorstores import Chroma, Weaviate, FAISS
 from langchain_community.embeddings import OllamaEmbeddings
+from dotenv import load_dotenv
 import ollama
+import os
 
+# Load environment variables
+load_dotenv()
+
+# Set global model variables
+model = os.getenv('MODEL', 'llama3.2')
+chunk_size = int(os.getenv('CHUNK_SIZE', 500))
+chunk_overlap = int(os.getenv('CHUNK_OVERLAP', 50))
 
 # set global model variables
 #model = "mistral"
 # model = "llama2"
-model = "llama3.2"
+#model = "llama3.2"
 
 embeddings = OllamaEmbeddings(model=model)
 retriever_cache = {}
@@ -26,7 +35,7 @@ def load_and_retrieve_docs(source):
         docs = loader.load()
 
         #text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
 
         splits = text_splitter.split_documents(docs)
 
